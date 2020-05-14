@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class) // 1. 기본 JUnit Runner 변경 / 스프링 부트 테스트와 JUnit 사이에 연결자 역할
 @WebMvcTest(controllers = HelloController.class) // 2. WebMvcText Controller를 테스트 하기 위한 어노테이션
 public class HelloControllerTest {
-
+//테스트 123
     @Autowired // 스프링이 관리하는 HelloController bean 을 주입받음
     private MockMvc mockMvc; // 4. 웹 Api를 테스트 할때 사용, http에 다양한 메소드를 테스트 가능
 
