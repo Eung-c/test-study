@@ -26,13 +26,13 @@ public class StatementPrinter {
             // 청구 내역을 출력한다.
             result += String.format("    %s: %s (%d석)",
                     playFor(perf).getPlaysInfo().getName(),
-                    usd(amountFor(perf)/100),
+                    usd(amountFor(perf)),
                     perf.getAudience());
             result+= "\n";
             totalAmount += amountFor(perf);
         }
 
-        result += String.format("총액: %s", usd(totalAmount/100));
+        result += String.format("총액: %s", usd(totalAmount));
         result+= "\n";
         result += String.format("적립 포인트: %.0f점",volumeCredits);
 
@@ -45,7 +45,7 @@ public class StatementPrinter {
             return "$" + decimalFormat.format(value);
         };
 
-        return format.apply(aNumber);
+        return format.apply(aNumber/100);
     }
 
     public float volumeCreditsFor(Performance perf){
