@@ -30,11 +30,9 @@ public class StatementPrinter {
             totalAmount += amountFor(perf);
         }
 
-        float volumeCredits = totalVolumeCredits(invoice);
-
         result += String.format("총액: %s", usd(totalAmount));
         result+= "\n";
-        result += String.format("적립 포인트: %.0f점",volumeCredits);
+        result += String.format("적립 포인트: %.0f점",totalVolumeCredits(invoice));
 
         return result;
     }
