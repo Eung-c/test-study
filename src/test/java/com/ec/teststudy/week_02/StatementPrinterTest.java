@@ -1,12 +1,16 @@
 package com.ec.teststudy.week_02;
 
 import com.ec.teststudy.week_02.domain.Invoice;
+import com.ec.teststudy.week_02.domain.Performance;
+import com.ec.teststudy.week_02.domain.Plays;
 import com.ec.teststudy.week_02.factory.InvoiceFactory;
 import com.ec.teststudy.week_02.factory.PlaysFactory;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 
 public class StatementPrinterTest {
@@ -39,5 +43,35 @@ public class StatementPrinterTest {
         String statement = statementPrinterUnderTest.statement(invoice, plays);
         // Verify the results
         assertEquals(expected, statement);
+    }
+
+    @Test
+    public void testAmountFor_TRAGEDY() {
+        // given
+        Performance performance = new Performance("hamlet", 55);
+        Plays plays = new PlaysFactory().getFor(performance.getPlayId());
+
+        float expected = 65000.0f;
+
+        // when
+        float actual = statementPrinterUnderTest.amountFor(performance, plays);
+
+        // then
+        assertThat(expected, is(actual));
+    }
+
+    @Test
+    public void testAmountFor_COMEDY() {
+        // given
+        Performance performance = new Performance("as-like", 35);
+        Plays plays = new PlaysFactory().getFor(performance.getPlayId());
+
+        float expected = 58000.0f;
+
+        // when
+        float actual = statementPrinterUnderTest.amountFor(performance, plays);
+
+        // then
+        assertThat(expected, is(actual));
     }
 }
