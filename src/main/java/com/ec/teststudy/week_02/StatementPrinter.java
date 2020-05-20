@@ -15,7 +15,7 @@ import static java.lang.Math.floor;
 public class StatementPrinter {
 
     public String statement(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
-        float totalAmount = 0.0f;
+
 
         String result = String.format("청구 내역 (고객명: %s)", invoice.getCustomer());
         result+= "\n";
@@ -27,14 +27,22 @@ public class StatementPrinter {
                     usd(amountFor(perf)),
                     perf.getAudience());
             result+= "\n";
-            totalAmount += amountFor(perf);
         }
+        float totalAmount = appleSource(invoice);
 
         result += String.format("총액: %s", usd(totalAmount));
         result+= "\n";
         result += String.format("적립 포인트: %.0f점",totalVolumeCredits(invoice));
 
         return result;
+    }
+
+    public float appleSource(Invoice invoice) {
+        float totalAmount = 0.0f;
+        for (Performance perf : invoice.getPerformances()) {
+            totalAmount += amountFor(perf);
+        }
+        return totalAmount;
     }
 
     public float totalVolumeCredits(Invoice invoice) {

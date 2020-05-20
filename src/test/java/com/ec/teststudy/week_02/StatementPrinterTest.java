@@ -153,4 +153,16 @@ public class StatementPrinterTest {
         // then
         assertThat(actual, is(expected));
     }
+
+    @Test
+    public void testAppleSource() {
+        // given
+        Invoice invoice = new Invoice("testCustomer", Arrays.asList(new Performance("hamlet", 55)));
+        float expected = 65000.0f;
+        // when
+        float actual = statementPrinterUnderTest.appleSource(invoice);
+
+        // then
+        assertThat(actual, is(expected));
+    }
 }
