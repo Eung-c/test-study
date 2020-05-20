@@ -45,12 +45,12 @@ public class StatementPrinter {
     }
 
     public float volumeCreditsFor(Performance perf){
-        float volumeCredits = 0.0f;
-        volumeCredits += Math.max(perf.getAudience() - 30, 0);
+        float result = 0.0f;
+        result += Math.max(perf.getAudience() - 30, 0);
         if(PlaysType.COMEDY.equals(playFor(perf).getPlaysInfo().getType()))
-            volumeCredits += floor(perf.getAudience() / (double)5);
+            result += floor(perf.getAudience() / (double)5);
 
-        return volumeCredits;
+        return result;
     }
 
     public Plays playFor(Performance aPerformance){
