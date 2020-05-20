@@ -6,4 +6,6 @@ import lombok.Data;
 @Builder
 @Data
 public class StatementData {
+
+    private String customer;
 }
