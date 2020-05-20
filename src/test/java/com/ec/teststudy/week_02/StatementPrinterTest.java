@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.hamcrest.Matchers.in;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -53,7 +54,7 @@ public class StatementPrinterTest {
         // Setup
         final Invoice invoice = new InvoiceFactory().getInvoice();
         final PlaysFactory plays = new PlaysFactory();
-        StatementData statementData = StatementData.builder().build();
+        StatementData statementData = StatementData.builder().customer(invoice.getCustomer()).build();
 
         String expected = "청구 내역 (고객명: BigCo)" +
                 "\n" +

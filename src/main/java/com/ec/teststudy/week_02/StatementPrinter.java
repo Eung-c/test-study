@@ -21,7 +21,7 @@ public class StatementPrinter {
     }
 
     public String renderPlainText(StatementData statementData, Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
-        String result = String.format("청구 내역 (고객명: %s)", invoice.getCustomer());
+        String result = String.format("청구 내역 (고객명: %s)", statementData.getCustomer());
         result+= "\n";
 
         for (Performance perf : invoice.getPerformances()) {
