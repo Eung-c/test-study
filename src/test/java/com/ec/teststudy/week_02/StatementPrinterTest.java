@@ -54,7 +54,10 @@ public class StatementPrinterTest {
         // Setup
         final Invoice invoice = new InvoiceFactory().getInvoice();
         final PlaysFactory plays = new PlaysFactory();
-        StatementData statementData = StatementData.builder().customer(invoice.getCustomer()).build();
+        StatementData statementData = StatementData.builder()
+                .customer(invoice.getCustomer())
+                .performances(invoice.getPerformances())
+                .build();
 
         String expected = "청구 내역 (고객명: BigCo)" +
                 "\n" +
@@ -68,7 +71,7 @@ public class StatementPrinterTest {
                 "적립 포인트: 47점";
 
         // Run the test
-        String statement = statementPrinterUnderTest.renderPlainText(statementData, invoice, plays);
+        String statement = statementPrinterUnderTest.renderPlainText(statementData, plays);
         // Verify the results
         assertEquals(expected, statement);
     }

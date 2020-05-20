@@ -16,16 +16,17 @@ public class StatementPrinter {
 //        Map<String, Object> statementData = new HashMap<>();
         StatementData statementData = StatementData.builder()
                 .customer(invoice.getCustomer())
+                .performances(invoice.getPerformances())
                 .build();
-        return renderPlainText(statementData, invoice, plays);
+        return renderPlainText(statementData, plays);
 
     }
 
-    public String renderPlainText(StatementData statementData, Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
+    public String renderPlainText(StatementData statementData, PlaysFactory plays) throws IllegalArgumentException {
         String result = String.format("청구 내역 (고객명: %s)", statementData.getCustomer());
         result+= "\n";
 
-        for (Performance perf : invoice.getPerformances()) {
+        for (Performance perf : statementData.getPerformances()) {
             // 청구 내역을 출력한다.
             result += String.format("    %s: %s (%d석)",
                     playFor(perf).getPlaysInfo().getName(),
@@ -33,9 +34,9 @@ public class StatementPrinter {
                     perf.getAudience());
             result+= "\n";
         }
-        result += String.format("총액: %s", usd(totalAmount(invoice.getPerformances())));
+        result += String.format("총액: %s", usd(totalAmount(statementData.getPerformances())));
         result+= "\n";
-        result += String.format("적립 포인트: %.0f점",totalVolumeCredits(invoice.getPerformances()));
+        result += String.format("적립 포인트: %.0f점",totalVolumeCredits(statementData.getPerformances()));
 
         return result;
     }
