@@ -53,7 +53,7 @@ public class StatementPrinterTest {
         // Setup
         final Invoice invoice = new InvoiceFactory().getInvoice();
         final PlaysFactory plays = new PlaysFactory();
-        StatementData statementData = new StatementData();
+        StatementData statementData = StatementData.builder().build();
 
         String expected = "청구 내역 (고객명: BigCo)" +
                 "\n" +

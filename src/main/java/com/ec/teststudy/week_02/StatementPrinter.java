@@ -13,7 +13,7 @@ public class StatementPrinter {
 
     public String statement(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
 //        Map<String, Object> statementData = new HashMap<>();
-        StatementData statementData = new StatementData();
+        StatementData statementData = StatementData.builder().build();
         return renderPlainText(statementData, invoice, plays);
 
     }
