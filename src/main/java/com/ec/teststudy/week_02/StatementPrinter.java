@@ -55,7 +55,7 @@ public class StatementPrinter {
 
     public float amountFor(Performance aPerformance, Plays play) {
         float result = 0;
-        switch (play.getPlaysInfo().getType()) {
+        switch (playFor(aPerformance).getPlaysInfo().getType()) {
             case TRAGEDY: // 비극
                 result = 40000;
                 if(aPerformance.getAudience() > 30){
