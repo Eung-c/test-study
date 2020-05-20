@@ -4,6 +4,7 @@ import com.ec.teststudy.week_02.domain.*;
 import com.ec.teststudy.week_02.factory.PlaysFactory;
 
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.function.Function;
 
 import static java.lang.Math.floor;
@@ -34,7 +35,7 @@ public class StatementPrinter {
         }
         result += String.format("총액: %s", usd(totalAmount(invoice)));
         result+= "\n";
-        result += String.format("적립 포인트: %.0f점",totalVolumeCredits(invoice));
+        result += String.format("적립 포인트: %.0f점",totalVolumeCredits(invoice.getPerformances()));
 
         return result;
     }
@@ -47,9 +48,9 @@ public class StatementPrinter {
         return result;
     }
 
-    public float totalVolumeCredits(Invoice invoice) {
+    public float totalVolumeCredits(List<Performance> performances) {
         float result = 0.0f;
-        for (Performance perf : invoice.getPerformances()) {
+        for (Performance perf : performances) {
             // 포인트를 적립한다.
             result += volumeCreditsFor(perf);
         }

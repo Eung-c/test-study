@@ -174,7 +174,7 @@ public class StatementPrinterTest {
         float expected = 25.0f;
 
         // when
-        float actual = statementPrinterUnderTest.totalVolumeCredits(invoice);
+        float actual = statementPrinterUnderTest.totalVolumeCredits(invoice.getPerformances());
 
         // then
         assertThat(actual, is(expected));
