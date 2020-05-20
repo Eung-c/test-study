@@ -3,6 +3,7 @@ package com.ec.teststudy.week_02;
 import com.ec.teststudy.week_02.domain.Invoice;
 import com.ec.teststudy.week_02.domain.Performance;
 import com.ec.teststudy.week_02.domain.Plays;
+import com.ec.teststudy.week_02.domain.PlaysType;
 import com.ec.teststudy.week_02.factory.PlaysFactory;
 
 import java.text.DecimalFormat;
@@ -48,7 +49,7 @@ public class StatementPrinter {
 
             // 포인트를 적립한다.
             volumeCredits += Math.max(perf.getAudience() - 30, 0);
-            if("comedy".equals(play.getPlaysInfo().getType().getType()))
+            if(PlaysType.COMEDY.equals(play.getPlaysInfo().getType()))
                 volumeCredits += floor(perf.getAudience() / (double)5);
 
             // 청구 내역을 출력한다.
