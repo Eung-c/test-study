@@ -26,8 +26,6 @@ public class StatementPrinter {
         };
 
         for (Performance perf : invoice.getPerformances()) {
-            float thisAmount = amountFor(perf);
-
             // 포인트를 적립한다.
             volumeCredits += Math.max(perf.getAudience() - 30, 0);
             if(PlaysType.COMEDY.equals(playFor(perf).getPlaysInfo().getType()))
@@ -36,10 +34,10 @@ public class StatementPrinter {
             // 청구 내역을 출력한다.
             result += String.format("    %s: %s (%d석)",
                     playFor(perf).getPlaysInfo().getName(),
-                    format.apply(thisAmount/100),
+                    format.apply(amountFor(perf)/100),
                     perf.getAudience());
             result+= "\n";
-            totalAmount += thisAmount;
+            totalAmount += amountFor(perf);
         }
 
         result += String.format("총액: %s", format.apply(totalAmount/100));
