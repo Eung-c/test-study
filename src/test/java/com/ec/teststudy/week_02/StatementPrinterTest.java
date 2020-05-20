@@ -8,6 +8,8 @@ import com.ec.teststudy.week_02.factory.PlaysFactory;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -136,5 +138,19 @@ public class StatementPrinterTest {
         // then
         assertThat(actual1, is(expected1));
         assertThat(actual2, is(expected2));
+    }
+
+    @Test
+    public void testTotalVolumeCredits() {
+
+        // given
+        Invoice invoice = new Invoice("testCustomer", Arrays.asList(new Performance("hamlet", 55)));
+        float expected = 25.0f;
+
+        // when
+        float actual = statementPrinterUnderTest.totalVolumeCredits(invoice);
+
+        // then
+        assertThat(actual, is(expected));
     }
 }

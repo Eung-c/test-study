@@ -16,13 +16,11 @@ public class StatementPrinter {
 
     public String statement(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
         float totalAmount = 0.0f;
-        float volumeCredits = 0.0f;
+
         String result = String.format("청구 내역 (고객명: %s)", invoice.getCustomer());
         result+= "\n";
 
         for (Performance perf : invoice.getPerformances()) {
-            // 포인트를 적립한다.
-            volumeCredits += volumeCreditsFor(perf);
             // 청구 내역을 출력한다.
             result += String.format("    %s: %s (%d석)",
                     playFor(perf).getPlaysInfo().getName(),
@@ -32,11 +30,22 @@ public class StatementPrinter {
             totalAmount += amountFor(perf);
         }
 
+        float volumeCredits = totalVolumeCredits(invoice);
+
         result += String.format("총액: %s", usd(totalAmount));
         result+= "\n";
         result += String.format("적립 포인트: %.0f점",volumeCredits);
 
         return result;
+    }
+
+    public float totalVolumeCredits(Invoice invoice) {
+        float volumeCredits = 0.0f;
+        for (Performance perf : invoice.getPerformances()) {
+            // 포인트를 적립한다.
+            volumeCredits += volumeCreditsFor(perf);
+        }
+        return volumeCredits;
     }
 
     public String usd(float aNumber){
