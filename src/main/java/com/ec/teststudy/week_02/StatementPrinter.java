@@ -13,7 +13,9 @@ public class StatementPrinter {
 
     public String statement(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
 //        Map<String, Object> statementData = new HashMap<>();
-        StatementData statementData = StatementData.builder().build();
+        StatementData statementData = StatementData.builder()
+                .customer(invoice.getCustomer())
+                .build();
         return renderPlainText(statementData, invoice, plays);
 
     }

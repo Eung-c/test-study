@@ -12,7 +12,17 @@ public class StatementDataTest {
 
     @Test
     public void createInstanceTest(){
-        statementData = new StatementData();
+        statementData = StatementData.builder().build();
         assertNotNull(statementData);
+    }
+
+    @Test
+    public void createInstanceTest_addCustomer(){
+        statementData = StatementData.builder()
+                .customer("customer")
+                .build();
+
+        assertNotNull(statementData);
+        assertEquals("customer", statementData.getCustomer());
     }
 }
