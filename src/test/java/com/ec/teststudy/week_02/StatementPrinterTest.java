@@ -116,4 +116,29 @@ public class StatementPrinterTest {
         // then
         assertThat(actual, is(expected));
     }
+
+
+    @Test
+    public void testFormat() {
+        // given
+        float float1 = 123.3f;
+        String expected1 = "$123.30";
+
+        float float2 = 0.3f;
+        String expected2 = "$0.30";
+
+        float float3 = 123344.3f;
+        String expected3 = "$123,344.30";
+
+        // when
+        String actual1 = statementPrinterUnderTest.format(float1);
+        String actual2 = statementPrinterUnderTest.format(float2);
+        String actual3 = statementPrinterUnderTest.format(float3);
+
+
+        // then
+        assertThat(actual1, is(expected1));
+        assertThat(actual2, is(expected2));
+        assertThat(actual3, is(expected3));
+    }
 }

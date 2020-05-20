@@ -20,28 +20,32 @@ public class StatementPrinter {
         String result = String.format("청구 내역 (고객명: %s)", invoice.getCustomer());
         result+= "\n";
 
-        Function<Float, String> format = value -> {
-            DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-            return "$" + decimalFormat.format(value);
-        };
-
         for (Performance perf : invoice.getPerformances()) {
             // 포인트를 적립한다.
             volumeCredits += volumeCreditsFor(perf);
             // 청구 내역을 출력한다.
             result += String.format("    %s: %s (%d석)",
                     playFor(perf).getPlaysInfo().getName(),
-                    format.apply(amountFor(perf)/100),
+                    format(amountFor(perf)/100),
                     perf.getAudience());
             result+= "\n";
             totalAmount += amountFor(perf);
         }
 
-        result += String.format("총액: %s", format.apply(totalAmount/100));
+        result += String.format("총액: %s", format(totalAmount/100));
         result+= "\n";
         result += String.format("적립 포인트: %.0f점",volumeCredits);
 
         return result;
+    }
+
+    public String format(float aNumber){
+        Function<Float, String> format = value -> {
+            DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+            return "$" + decimalFormat.format(value);
+        };
+
+        return format.apply(aNumber);
     }
 
     public float volumeCreditsFor(Performance perf){
