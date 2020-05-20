@@ -50,21 +50,21 @@ public class StatementPrinter {
         return result;
     }
 
-    public float amountFor(Performance perf, Plays play) {
+    public float amountFor(Performance aPerformance, Plays play) {
         float result = 0;
         switch (play.getPlaysInfo().getType()) {
             case TRAGEDY: // 비극
                 result = 40000;
-                if(perf.getAudience() > 30){
-                    result += 1000 * (perf.getAudience() - 30);
+                if(aPerformance.getAudience() > 30){
+                    result += 1000 * (aPerformance.getAudience() - 30);
                 }
                 break;
             case COMEDY: // 희극
                 result = 30000;
-                if(perf.getAudience() > 20){
-                    result += 10000 + 500 * (perf.getAudience() - 20);
+                if(aPerformance.getAudience() > 20){
+                    result += 10000 + 500 * (aPerformance.getAudience() - 20);
                 }
-                result += 300 * perf.getAudience();
+                result += 300 * aPerformance.getAudience();
                 break;
             default:
                 throw new IllegalArgumentException("알 수 없는 장르" + play.getPlaysInfo().getType().getType());
