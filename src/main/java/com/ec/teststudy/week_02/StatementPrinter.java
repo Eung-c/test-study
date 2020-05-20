@@ -44,12 +44,12 @@ public class StatementPrinter {
     }
 
     public float totalVolumeCredits(Invoice invoice) {
-        float volumeCredits = 0.0f;
+        float result = 0.0f;
         for (Performance perf : invoice.getPerformances()) {
             // 포인트를 적립한다.
-            volumeCredits += volumeCreditsFor(perf);
+            result += volumeCreditsFor(perf);
         }
-        return volumeCredits;
+        return result;
     }
 
     public String usd(float aNumber){
