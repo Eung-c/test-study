@@ -27,25 +27,7 @@ public class StatementPrinter {
 
         for (Performance perf : invoice.getPerformances()) {
             Plays play = plays.getFor(perf.getPlayId());
-            float thisAmount = 0;
-
-            switch (play.getPlaysInfo().getType()) {
-                case TRAGEDY: // 비극
-                    thisAmount = 40000;
-                    if(perf.getAudience() > 30){
-                        thisAmount += 1000 * (perf.getAudience() - 30);
-                    }
-                    break;
-                case COMEDY: // 희극
-                    thisAmount = 30000;
-                    if(perf.getAudience() > 20){
-                        thisAmount += 10000 + 500 * (perf.getAudience() - 20);
-                    }
-                    thisAmount += 300 * perf.getAudience();
-                    break;
-                default:
-                    throw new IllegalArgumentException("알 수 없는 장르" + play.getPlaysInfo().getType().getType());
-            }
+            float thisAmount = amountFor(perf, play);
 
             // 포인트를 적립한다.
             volumeCredits += Math.max(perf.getAudience() - 30, 0);
@@ -66,5 +48,27 @@ public class StatementPrinter {
         result += String.format("적립 포인트: %.0f점",volumeCredits);
 
         return result;
+    }
+
+    public float amountFor(Performance perf, Plays play) {
+        float thisAmount = 0;
+        switch (play.getPlaysInfo().getType()) {
+            case TRAGEDY: // 비극
+                thisAmount = 40000;
+                if(perf.getAudience() > 30){
+                    thisAmount += 1000 * (perf.getAudience() - 30);
+                }
+                break;
+            case COMEDY: // 희극
+                thisAmount = 30000;
+                if(perf.getAudience() > 20){
+                    thisAmount += 10000 + 500 * (perf.getAudience() - 20);
+                }
+                thisAmount += 300 * perf.getAudience();
+                break;
+            default:
+                throw new IllegalArgumentException("알 수 없는 장르" + play.getPlaysInfo().getType().getType());
+        }
+        return thisAmount;
     }
 }
