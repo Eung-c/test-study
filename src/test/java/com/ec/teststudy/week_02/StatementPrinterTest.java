@@ -48,6 +48,29 @@ public class StatementPrinterTest {
     }
 
     @Test
+    public void testRenderPlainText() {
+        // Setup
+        final Invoice invoice = new InvoiceFactory().getInvoice();
+        final PlaysFactory plays = new PlaysFactory();
+
+        String expected = "청구 내역 (고객명: BigCo)" +
+                "\n" +
+                "    Hamlet: $650.00 (55석)" +
+                "\n" +
+                "    As You Like It: $580.00 (35석)" +
+                "\n" +
+                "    Othello: $500.00 (40석)" +
+                "\n" +
+                "총액: $1,730.00\n" +
+                "적립 포인트: 47점";
+
+        // Run the test
+        String statement = statementPrinterUnderTest.renderPlainText(invoice, plays);
+        // Verify the results
+        assertEquals(expected, statement);
+    }
+
+    @Test
     public void testAmountFor_TRAGEDY() {
         // given
         Performance performance = new Performance("hamlet", 55);
@@ -165,4 +188,6 @@ public class StatementPrinterTest {
         // then
         assertThat(actual, is(expected));
     }
+
+
 }

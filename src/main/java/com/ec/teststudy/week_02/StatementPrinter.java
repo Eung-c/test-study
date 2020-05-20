@@ -15,8 +15,10 @@ import static java.lang.Math.floor;
 public class StatementPrinter {
 
     public String statement(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
+        return renderPlainText(invoice, plays);
+    }
 
-
+    public String renderPlainText(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
         String result = String.format("청구 내역 (고객명: %s)", invoice.getCustomer());
         result+= "\n";
 
