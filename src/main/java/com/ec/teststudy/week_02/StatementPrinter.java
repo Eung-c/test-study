@@ -70,7 +70,7 @@ public class StatementPrinter {
     public float volumeCreditsFor(Performance perf){
         float result = 0.0f;
         result += Math.max(perf.getAudience() - 30, 0);
-        if(PlaysType.COMEDY.equals(playFor(perf).getPlaysInfo().getType()))
+        if(PlaysType.COMEDY.equals(perf.getPlay().getPlaysInfo().getType()))
             result += floor(perf.getAudience() / (double)5);
 
         return result;
@@ -82,7 +82,7 @@ public class StatementPrinter {
 
     public float amountFor(Performance aPerformance) {
         float result = 0;
-        switch (playFor(aPerformance).getPlaysInfo().getType()) {
+        switch (aPerformance.getPlay().getPlaysInfo().getType()) {
             case TRAGEDY: // 비극
                 result = 40000;
                 if(aPerformance.getAudience() > 30){
@@ -97,7 +97,7 @@ public class StatementPrinter {
                 result += 300 * aPerformance.getAudience();
                 break;
             default:
-                throw new IllegalArgumentException("알 수 없는 장르" + playFor(aPerformance).getPlaysInfo().getType().getType());
+                throw new IllegalArgumentException("알 수 없는 장르" + aPerformance.getPlay().getPlaysInfo().getType().getType());
         }
         return result;
     }
