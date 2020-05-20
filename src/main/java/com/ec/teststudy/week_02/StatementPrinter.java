@@ -28,16 +28,14 @@ public class StatementPrinter {
                     perf.getAudience());
             result+= "\n";
         }
-        float totalAmount = appleSource(invoice);
-
-        result += String.format("총액: %s", usd(totalAmount));
+        result += String.format("총액: %s", usd(totalAmount(invoice)));
         result+= "\n";
         result += String.format("적립 포인트: %.0f점",totalVolumeCredits(invoice));
 
         return result;
     }
 
-    public float appleSource(Invoice invoice) {
+    public float totalAmount(Invoice invoice) {
         float totalAmount = 0.0f;
         for (Performance perf : invoice.getPerformances()) {
             totalAmount += amountFor(perf);
