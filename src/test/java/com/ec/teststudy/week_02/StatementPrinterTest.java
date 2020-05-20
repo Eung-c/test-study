@@ -186,7 +186,7 @@ public class StatementPrinterTest {
         Invoice invoice = new Invoice("testCustomer", Arrays.asList(new Performance("hamlet", 55)));
         float expected = 65000.0f;
         // when
-        float actual = statementPrinterUnderTest.totalAmount(invoice);
+        float actual = statementPrinterUnderTest.totalAmount(invoice.getPerformances());
 
         // then
         assertThat(actual, is(expected));
