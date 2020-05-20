@@ -29,7 +29,7 @@ public class StatementPrinter {
         for (Performance perf : statementData.getPerformances()) {
             // 청구 내역을 출력한다.
             result += String.format("    %s: %s (%d석)",
-                    playFor(perf).getPlaysInfo().getName(),
+                    perf.getPlay().getPlaysInfo().getName(),
                     usd(amountFor(perf)),
                     perf.getAudience());
             result+= "\n";
