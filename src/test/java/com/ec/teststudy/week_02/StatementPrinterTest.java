@@ -76,7 +76,7 @@ public class StatementPrinterTest {
     }
 
     @Test
-    public void playForTest() {
+    public void testPlayForTest() {
 
         // given
         Performance performance = new Performance("as-like", 35);
@@ -92,7 +92,7 @@ public class StatementPrinterTest {
     }
 
     @Test
-    public void volumeCreditsFor_C0MEDY() {
+    public void testVolumeCreditsFor_C0MEDY() {
         // given
         Performance performance = new Performance("as-like", 35);
         float expected = 12.0f;
@@ -105,7 +105,7 @@ public class StatementPrinterTest {
     }
 
     @Test
-    public void volumeCreditsFor_TRAGEDY() {
+    public void testVolumeCreditsFor_TRAGEDY() {
         // given
         Performance performance = new Performance("hamlet", 55);
         float expected = 25.0f;
