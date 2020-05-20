@@ -4,8 +4,6 @@ import com.ec.teststudy.week_02.domain.*;
 import com.ec.teststudy.week_02.factory.PlaysFactory;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 
 import static java.lang.Math.floor;
@@ -15,12 +13,12 @@ public class StatementPrinter {
 
     public String statement(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
 //        Map<String, Object> statementData = new HashMap<>();
-        MiddleStructure statementData = new MiddleStructure();
+        StatementData statementData = new StatementData();
         return renderPlainText(statementData, invoice, plays);
 
     }
 
-    public String renderPlainText(MiddleStructure statementData, Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
+    public String renderPlainText(StatementData statementData, Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
         String result = String.format("청구 내역 (고객명: %s)", invoice.getCustomer());
         result+= "\n";
 

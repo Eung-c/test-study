@@ -1,7 +1,7 @@
 package com.ec.teststudy.week_02;
 
 import com.ec.teststudy.week_02.domain.Invoice;
-import com.ec.teststudy.week_02.domain.MiddleStructure;
+import com.ec.teststudy.week_02.domain.StatementData;
 import com.ec.teststudy.week_02.domain.Performance;
 import com.ec.teststudy.week_02.domain.Plays;
 import com.ec.teststudy.week_02.factory.InvoiceFactory;
@@ -53,7 +53,7 @@ public class StatementPrinterTest {
         // Setup
         final Invoice invoice = new InvoiceFactory().getInvoice();
         final PlaysFactory plays = new PlaysFactory();
-        MiddleStructure statementData = new MiddleStructure();
+        StatementData statementData = new StatementData();
 
         String expected = "청구 내역 (고객명: BigCo)" +
                 "\n" +
