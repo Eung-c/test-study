@@ -131,9 +131,9 @@ public class StatementPrinterTest {
         String expected3 = "$123,344.30";
 
         // when
-        String actual1 = statementPrinterUnderTest.format(float1);
-        String actual2 = statementPrinterUnderTest.format(float2);
-        String actual3 = statementPrinterUnderTest.format(float3);
+        String actual1 = statementPrinterUnderTest.usd(float1);
+        String actual2 = statementPrinterUnderTest.usd(float2);
+        String actual3 = statementPrinterUnderTest.usd(float3);
 
 
         // then

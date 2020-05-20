@@ -26,20 +26,20 @@ public class StatementPrinter {
             // 청구 내역을 출력한다.
             result += String.format("    %s: %s (%d석)",
                     playFor(perf).getPlaysInfo().getName(),
-                    format(amountFor(perf)/100),
+                    usd(amountFor(perf)/100),
                     perf.getAudience());
             result+= "\n";
             totalAmount += amountFor(perf);
         }
 
-        result += String.format("총액: %s", format(totalAmount/100));
+        result += String.format("총액: %s", usd(totalAmount/100));
         result+= "\n";
         result += String.format("적립 포인트: %.0f점",volumeCredits);
 
         return result;
     }
 
-    public String format(float aNumber){
+    public String usd(float aNumber){
         Function<Float, String> format = value -> {
             DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
             return "$" + decimalFormat.format(value);
