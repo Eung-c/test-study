@@ -26,7 +26,7 @@ public class StatementPrinter {
         };
 
         for (Performance perf : invoice.getPerformances()) {
-            float thisAmount = amountFor(perf, playFor(perf));
+            float thisAmount = amountFor(perf);
 
             // 포인트를 적립한다.
             volumeCredits += Math.max(perf.getAudience() - 30, 0);
@@ -53,7 +53,7 @@ public class StatementPrinter {
         return new PlaysFactory().getFor(aPerformance.getPlayId());
     }
 
-    public float amountFor(Performance aPerformance, Plays play) {
+    public float amountFor(Performance aPerformance) {
         float result = 0;
         switch (playFor(aPerformance).getPlaysInfo().getType()) {
             case TRAGEDY: // 비극
@@ -70,7 +70,7 @@ public class StatementPrinter {
                 result += 300 * aPerformance.getAudience();
                 break;
             default:
-                throw new IllegalArgumentException("알 수 없는 장르" + play.getPlaysInfo().getType().getType());
+                throw new IllegalArgumentException("알 수 없는 장르" + playFor(aPerformance).getPlaysInfo().getType().getType());
         }
         return result;
     }
