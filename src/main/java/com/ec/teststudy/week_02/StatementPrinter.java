@@ -36,11 +36,11 @@ public class StatementPrinter {
     }
 
     public float totalAmount(Invoice invoice) {
-        float totalAmount = 0.0f;
+        float result = 0.0f;
         for (Performance perf : invoice.getPerformances()) {
-            totalAmount += amountFor(perf);
+            result += amountFor(perf);
         }
-        return totalAmount;
+        return result;
     }
 
     public float totalVolumeCredits(Invoice invoice) {
