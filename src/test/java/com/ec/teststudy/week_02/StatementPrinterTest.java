@@ -9,6 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
@@ -52,6 +54,7 @@ public class StatementPrinterTest {
         // Setup
         final Invoice invoice = new InvoiceFactory().getInvoice();
         final PlaysFactory plays = new PlaysFactory();
+        Map<String, Object> statementData = new HashMap<>();
 
         String expected = "청구 내역 (고객명: BigCo)" +
                 "\n" +
@@ -65,7 +68,7 @@ public class StatementPrinterTest {
                 "적립 포인트: 47점";
 
         // Run the test
-        String statement = statementPrinterUnderTest.renderPlainText(invoice, plays);
+        String statement = statementPrinterUnderTest.renderPlainText(statementData, invoice, plays);
         // Verify the results
         assertEquals(expected, statement);
     }

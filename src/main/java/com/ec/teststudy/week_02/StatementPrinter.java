@@ -7,6 +7,8 @@ import com.ec.teststudy.week_02.domain.PlaysType;
 import com.ec.teststudy.week_02.factory.PlaysFactory;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import static java.lang.Math.floor;
@@ -15,10 +17,11 @@ import static java.lang.Math.floor;
 public class StatementPrinter {
 
     public String statement(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
-        return renderPlainText(invoice, plays);
+        Map<String, Object> statementData = new HashMap<>();
+        return renderPlainText(statementData, invoice, plays);
     }
 
-    public String renderPlainText(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
+    public String renderPlainText(Map<String, Object> statementData, Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
         String result = String.format("청구 내역 (고객명: %s)", invoice.getCustomer());
         result+= "\n";
 
