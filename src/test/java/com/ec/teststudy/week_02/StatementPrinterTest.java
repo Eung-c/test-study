@@ -54,7 +54,7 @@ public class StatementPrinterTest {
         float expected = 65000.0f;
 
         // when
-        float actual = statementPrinterUnderTest.amountFor(performance, plays);
+        float actual = statementPrinterUnderTest.amountFor(performance);
 
         // then
         assertThat(expected, is(actual));
@@ -69,7 +69,7 @@ public class StatementPrinterTest {
         float expected = 58000.0f;
 
         // when
-        float actual = statementPrinterUnderTest.amountFor(performance, plays);
+        float actual = statementPrinterUnderTest.amountFor(performance);
 
         // then
         assertThat(expected, is(actual));
