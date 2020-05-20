@@ -74,4 +74,20 @@ public class StatementPrinterTest {
         // then
         assertThat(expected, is(actual));
     }
+
+    @Test
+    public void playForTest() {
+
+        // given
+        Performance performance = new Performance("as-like", 35);
+        Plays expected = new PlaysFactory().getFor(performance.getPlayId());
+
+        // when
+        Plays plays = statementPrinterUnderTest.playFor(performance);
+
+        // then
+        assertThat(expected.getPlaysInfo().getType(), is(plays.getPlaysInfo().getType()));
+        assertThat(expected.getPlaysInfo().getName(), is(plays.getPlaysInfo().getName()));
+        assertThat(performance.getPlayId(), is(plays.getPlayId()));
+    }
 }
