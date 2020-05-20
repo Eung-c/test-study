@@ -27,10 +27,7 @@ public class StatementPrinter {
 
         for (Performance perf : invoice.getPerformances()) {
             // 포인트를 적립한다.
-            volumeCredits += Math.max(perf.getAudience() - 30, 0);
-            if(PlaysType.COMEDY.equals(playFor(perf).getPlaysInfo().getType()))
-                volumeCredits += floor(perf.getAudience() / (double)5);
-
+            volumeCredits += volumeCreditsFor(perf);
             // 청구 내역을 출력한다.
             result += String.format("    %s: %s (%d석)",
                     playFor(perf).getPlaysInfo().getName(),
@@ -45,6 +42,15 @@ public class StatementPrinter {
         result += String.format("적립 포인트: %.0f점",volumeCredits);
 
         return result;
+    }
+
+    public float volumeCreditsFor(Performance perf){
+        float volumeCredits = 0.0f;
+        volumeCredits += Math.max(perf.getAudience() - 30, 0);
+        if(PlaysType.COMEDY.equals(playFor(perf).getPlaysInfo().getType()))
+            volumeCredits += floor(perf.getAudience() / (double)5);
+
+        return volumeCredits;
     }
 
     public Plays playFor(Performance aPerformance){
