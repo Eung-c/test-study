@@ -1,9 +1,6 @@
 package com.ec.teststudy.week_02;
 
-import com.ec.teststudy.week_02.domain.Invoice;
-import com.ec.teststudy.week_02.domain.Performance;
-import com.ec.teststudy.week_02.domain.Plays;
-import com.ec.teststudy.week_02.domain.PlaysType;
+import com.ec.teststudy.week_02.domain.*;
 import com.ec.teststudy.week_02.factory.PlaysFactory;
 
 import java.text.DecimalFormat;
@@ -17,11 +14,13 @@ import static java.lang.Math.floor;
 public class StatementPrinter {
 
     public String statement(Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
-        Map<String, Object> statementData = new HashMap<>();
+//        Map<String, Object> statementData = new HashMap<>();
+        MiddleStructure statementData = new MiddleStructure();
         return renderPlainText(statementData, invoice, plays);
+
     }
 
-    public String renderPlainText(Map<String, Object> statementData, Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
+    public String renderPlainText(MiddleStructure statementData, Invoice invoice, PlaysFactory plays) throws IllegalArgumentException {
         String result = String.format("청구 내역 (고객명: %s)", invoice.getCustomer());
         result+= "\n";
 
