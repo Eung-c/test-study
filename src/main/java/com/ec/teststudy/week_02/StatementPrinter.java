@@ -26,7 +26,7 @@ public class StatementPrinter {
         };
 
         for (Performance perf : invoice.getPerformances()) {
-            Plays play = plays.getFor(perf.getPlayId());
+            Plays play = playFor(perf);
             float thisAmount = amountFor(perf, play);
 
             // 포인트를 적립한다.
@@ -48,6 +48,10 @@ public class StatementPrinter {
         result += String.format("적립 포인트: %.0f점",volumeCredits);
 
         return result;
+    }
+
+    public Plays playFor(Performance aPerformance){
+        return new PlaysFactory().getFor(aPerformance.getPlayId());
     }
 
     public float amountFor(Performance aPerformance, Plays play) {
