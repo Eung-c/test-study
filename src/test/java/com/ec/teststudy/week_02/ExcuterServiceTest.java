@@ -1,33 +1,28 @@
 package com.ec.teststudy.week_02;
 
 import org.junit.Test;
-import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-public class ExcuterTest {
-
-
-
-
+public class ExcuterServiceTest {
 
     @Test
     public void createInstance(){
-        Excuter excuter = new Excuter();
-        assertNotNull(excuter);
+        ExcuterService excuterService = new ExcuterService();
+        assertNotNull(excuterService);
     }
 
     @Test
     public void excute_더하기() {
         // given
-        Excuter excuter = new Excuter();
+        ExcuterService excuterService = new ExcuterService();
         int expected = 7;
 
         // when
-        int actual = excuter.excute("+", 3, 4);
+        int actual = excuterService.excute("+", 3, 4);
 
         assertThat(actual, is(expected));
     }
@@ -35,11 +30,11 @@ public class ExcuterTest {
     @Test
     public void excute_빼기() {
         // given
-        Excuter excuter = new Excuter();
+        ExcuterService excuterService = new ExcuterService();
         int expected = -1;
 
         // when
-        int actual = excuter.excute("-", 3, 4);
+        int actual = excuterService.excute("-", 3, 4);
 
         assertThat(actual, is(expected));
     }
@@ -47,22 +42,23 @@ public class ExcuterTest {
     @Test(expected = IllegalArgumentException.class)
     public void excute_에러() {
         // given
-        Excuter excuter = new Excuter();
+        ExcuterService excuterService = new ExcuterService();
         int expected = 7;
 
         // when
-        int actual = excuter.excute("/", 3, 4);
+        int actual = excuterService.excute("/", 3, 4);
 
         assertThat(actual, is(expected));
     }
 
     @Test
     public void 지환계산기(){
-        Cal mock = mock(Cal.class);
-        when(mock.excuted(4, 5)).thenReturn(10);
+        Repo repo = mock(Repo.class);
+        when(repo.getNumber(2)).thenReturn(4);
 
-        assertEquals(mock.excuted(4, 5), 10);
+        ExcuterService excuterService = new ExcuterService();
+        excuterService.setRepo(repo);
 
-
+        System.out.println(excuterService.excute2(2));
     }
 }

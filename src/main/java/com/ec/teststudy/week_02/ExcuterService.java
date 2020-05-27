@@ -1,14 +1,11 @@
 package com.ec.teststudy.week_02;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.util.Map;
 
-public class Excuter {
+public class ExcuterService {
 
 
-    R
+    Repo repo;
     CalFactory calFactory = new CalFactory();
     public int excute(String op, int num1, int num2){
 
@@ -17,7 +14,20 @@ public class Excuter {
             throw new IllegalArgumentException("없다");
 
         Cal cal = (Cal) map.get(op);
-        return cal.excuted(num1, num2);
+        return cal.executed(num1, num2);
+    }
 
+    public void setRepo(Repo repo){
+        this.repo = repo;
+    }
+
+    public int excute2(int num1){
+        excute3(num1);
+        return num1 + repo.getNumber(num1);
+    }
+
+    public void excute3(int num1){
+        // 디스플레이에 데이터를 전송한다.
+        System.out.println(num1);
     }
 }

@@ -1,7 +1,6 @@
 package com.ec.teststudy.week_02;
 
 import com.ec.teststudy.week_02.domain.Invoice;
-import com.ec.teststudy.week_02.domain.StatementData;
 import com.ec.teststudy.week_02.domain.Performance;
 import com.ec.teststudy.week_02.domain.Plays;
 import com.ec.teststudy.week_02.factory.InvoiceFactory;
@@ -9,9 +8,6 @@ import com.ec.teststudy.week_02.factory.PlaysFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-
-import static org.hamcrest.Matchers.in;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -45,33 +41,6 @@ public class StatementPrinterTest {
 
         // Run the test
         String statement = statementPrinterUnderTest.statement(invoice, plays);
-        // Verify the results
-        assertEquals(expected, statement);
-    }
-
-    @Test
-    public void testRenderPlainText() {
-        // Setup
-        final Invoice invoice = new InvoiceFactory().getInvoice();
-        final PlaysFactory plays = new PlaysFactory();
-        StatementData statementData = StatementData.builder()
-                .customer(invoice.getCustomer())
-                .performances(invoice.getPerformances())
-                .build();
-
-        String expected = "청구 내역 (고객명: BigCo)" +
-                "\n" +
-                "    Hamlet: $650.00 (55석)" +
-                "\n" +
-                "    As You Like It: $580.00 (35석)" +
-                "\n" +
-                "    Othello: $500.00 (40석)" +
-                "\n" +
-                "총액: $1,730.00\n" +
-                "적립 포인트: 47점";
-
-        // Run the test
-        String statement = statementPrinterUnderTest.renderPlainText(statementData, plays);
         // Verify the results
         assertEquals(expected, statement);
     }
@@ -168,32 +137,4 @@ public class StatementPrinterTest {
         assertThat(actual1, is(expected1));
         assertThat(actual2, is(expected2));
     }
-
-    @Test
-    public void testTotalVolumeCredits() {
-
-        // given
-        Invoice invoice = new Invoice("testCustomer", Arrays.asList(new Performance("hamlet", 55)));
-        float expected = 25.0f;
-
-        // when
-        float actual = statementPrinterUnderTest.totalVolumeCredits(invoice.getPerformances());
-
-        // then
-        assertThat(actual, is(expected));
-    }
-
-    @Test
-    public void testAppleSource() {
-        // given
-        Invoice invoice = new Invoice("testCustomer", Arrays.asList(new Performance("hamlet", 55)));
-        float expected = 65000.0f;
-        // when
-        float actual = statementPrinterUnderTest.totalAmount(invoice.getPerformances());
-
-        // then
-        assertThat(actual, is(expected));
-    }
-
-
 }
